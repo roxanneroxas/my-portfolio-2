@@ -1,0 +1,33 @@
+.contact-page { padding-top: 80px; }
+.cp-section { min-height: 100vh; padding: 4rem 2rem 5rem; display: flex; align-items: center; justify-content: center; }
+.cp-inner { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: start; }
+
+.cp-intro { color: var(--muted); line-height: 1.8; margin: 1rem 0 2rem; font-size: 1rem; }
+
+.cp-info-list { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2rem; }
+.cp-info-item { display: flex; gap: 1rem; align-items: flex-start; }
+.cp-info-icon { width: 44px; height: 44px; background: var(--purple-dim); border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.cp-info-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.1em; }
+.cp-info-val { font-size: 0.92rem; color: var(--text); word-break: break-all; }
+a.cp-info-val { color: var(--purple); }
+
+.cp-socials { display: flex; gap: 1rem; }
+.cp-social { background: var(--purple-dim); border: 1px solid var(--border); border-radius: 99px; padding: 0.45rem 1.2rem; font-size: 0.85rem; color: var(--text); transition: border-color 0.2s, color 0.2s; }
+.cp-social:hover { border-color: var(--purple); color: var(--purple); }
+
+.cp-form-card { padding: 2rem; }
+.cp-form-title { font-family: var(--font-head); font-size: 1.3rem; font-weight: 600; margin-bottom: 1.6rem; }
+.cp-form { display: flex; flex-direction: column; gap: 1.1rem; }
+.cp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.cp-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.cp-field label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.06em; }
+.cp-field input, .cp-field textarea { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 0.7rem 1rem; color: var(--text); font-family: var(--font-body); font-size: 0.9rem; outline: none; transition: border-color 0.2s; resize: vertical; }
+.cp-field input:focus, .cp-field textarea:focus { border-color: var(--purple); }
+.cp-field input::placeholder, .cp-field textarea::placeholder { color: var(--muted); opacity: 0.7; }
+.cp-submit { width: 100%; justify-content: center; }
+.cp-success { text-align: center; color: #6ecf8c; font-size: 0.9rem; }
+
+@media (max-width: 900px) {
+  .cp-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .cp-row { grid-template-columns: 1fr; }
+}

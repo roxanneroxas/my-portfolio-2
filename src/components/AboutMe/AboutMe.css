@@ -1,0 +1,58 @@
+.aboutme-page { padding-top: 80px; }
+
+.am-hero { min-height: 80vh; display: flex; align-items: center; padding: 4rem 2rem; }
+.am-hero-inner { display: grid; grid-template-columns: auto 1fr; gap: 4rem; align-items: center; }
+
+.am-avatar { position: relative; width: 180px; height: 180px; flex-shrink: 0; }
+.am-avatar-ring {
+  position: absolute; inset: -4px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  animation: spin 6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.am-avatar-core {
+  position: absolute; inset: 4px; border-radius: 50%;
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 3rem; font-weight: 700;
+  color: var(--purple); overflow: hidden;
+}
+.am-avatar-core img { width: 100%; height: 100%; object-fit: cover; }
+
+.am-name { font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 0.5rem; }
+.am-title { color: var(--purple); font-size: 1rem; margin-bottom: 1rem; }
+.am-bio { color: var(--muted); line-height: 1.7; max-width: 560px; margin-bottom: 1.8rem; }
+.am-contacts { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.am-contacts li { display: flex; align-items: center; gap: 0.7rem; font-size: 0.9rem; color: var(--muted); }
+.am-contacts a { color: var(--purple); }
+.am-c-icon { font-size: 1.1rem; }
+
+.am-section { padding: 4rem 2rem; }
+.am-section--sm { padding: 2rem 2rem 5rem; }
+
+.edu-timeline { margin-top: 2.5rem; display: flex; flex-direction: column; }
+.edu-item { display: grid; grid-template-columns: 60px 1fr; gap: 1.2rem; }
+.edu-dot { display: flex; flex-direction: column; align-items: center; padding-top: 1.2rem; }
+.edu-dot span {
+  width: 44px; height: 44px;
+  background: var(--purple-dim); border: 1px solid var(--border);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; z-index: 1;
+}
+.edu-line { width: 2px; flex: 1; min-height: 24px; background: linear-gradient(to bottom, var(--purple), transparent); margin: 4px auto; }
+.edu-body { padding: 1.3rem 1.5rem; margin-bottom: 1.2rem; }
+.edu-level { font-family: var(--font-head); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem; }
+.edu-school { color: var(--muted); font-size: 0.92rem; margin-bottom: 0.2rem; }
+.edu-period { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.4rem; }
+.edu-honor { color: var(--purple); font-size: 0.9rem; }
+
+.ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
+.ach-card { padding: 1.5rem 1.8rem; display: flex; gap: 1rem; align-items: center; }
+.ach-medal { font-size: 2rem; flex-shrink: 0; }
+.ach-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+
+@media (max-width: 700px) {
+  .am-hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .am-avatar { margin: 0 auto; }
+  .am-contacts li { justify-content: center; }
+}
