@@ -6,10 +6,14 @@ import AboutMe from './components/AboutMe/AboutMe'
 import Projects from './components/Projects/Projects'
 import Skills from './components/Skills/Skills'
 import ContactPage from './components/ContactPage/ContactPage'
+import ScrollToTop from './components/ScrollToTop/ScrollToTop'
+import Footer from './components/Footer/Footer'
+
 
 function Aurora() {
   return (
     <div className="aurora-wrap">
+      <div className="aurora-blob" />
       <div className="aurora-blob" />
       <div className="aurora-blob" />
       <div className="aurora-blob" />
@@ -22,6 +26,7 @@ export default function App() {
     <>
       <Aurora />
       <Navbar />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about-me" element={<AboutMe />} />
@@ -29,6 +34,7 @@ export default function App() {
         <Route path="/skills" element={<Skills />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
+      <Footer />
     </>
   )
 }

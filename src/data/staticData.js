@@ -8,45 +8,60 @@ import purrcafeImg from '../assets/purrcafe.png'
 import studentportalImg from '../assets/studentportal.jpg'
 import taragImg from '../assets/tarag.png'
 import wordpressImg from '../assets/wordpress.png'
+import blender3dImg from '../assets/blender3d.png'
 
 export const profile = {
   name: "Roxanne Roxas",
-  nickname: "Ro",
-  title: "BSIT Graduate | Web Developer",
-  tagline: "Aspiring IT Professional | Web Developer",
-  bio: "I am Roxanne Roxas, a BSIT graduate from La Consolacion University Philippines passionate about technology and web development. My journey in IT has taught me to create meaningful projects, learn continuously, and adapt to new technologies.\n\nI enjoy building projects that help others and showcase my skills. My goal is to become a professional developer who can create real solutions that make a difference.",
-  shortBio: "I am a BSIT graduate passionate about technology and web development. My journey in IT has taught me to create meaningful projects.",
-  email: "roxanne.roxas@email.lcup.edu.ph",
+  nickname: "Roxy",
+  title: "ViewQwest · BSIT Magna Cum Laude, Class of 2026",
+  tagline: "Junior Software Engineer | Web Developer",
+  bio: "I am Roxanne Roxas, a BSIT Magna Cum Laude graduate from La Consolacion University Philippines, currently working as a Junior Software Engineer at ViewQwest. I am passionate about technology and web development, and my journey in IT has taught me to create meaningful projects, learn continuously, and adapt to new technologies.\n\nI enjoy building projects that help others and showcase my skills. My goal is to become a professional developer who can create real solutions that make a difference.",
+  shortBio: "BSIT Magna Cum Laude graduate who enjoys turning complex problems into clean, functional web experiences.",
+  email: "roxanneroxas23@gmail.com",
+  businessEmail: "roxanne.croxas@viewqwest.com",
   phone: "+63 960 390 4241",
   address: "Bulacan, City of Malolos, Philippines",
-  linkedin: "https://linkedin.com/in/roxanne-roxas",
-  linkedinLabel: "linkedin.com/in/roxanne-roxas",
-  github: "https://github.com/roxannroxas",
-  githubLabel: "github.com/roxannroxas",
+  linkedin: "https://www.linkedin.com/in/roxanneroxas23/",
+  linkedinLabel: "linkedin.com/in/roxanneroxas23",
+  github: "https://github.com/roxanneroxas",
+  githubLabel: "github.com/roxanneroxas",
   resume: "/assets/Resume.pdf",
 }
 
+export const experience = [
+  {
+    id: 1,
+    company: "ViewQwest Philippines, Inc.",
+    role: "Junior Software Engineer",
+    period: "2026 – Present",
+    type: "Full-time",
+    icon: "💼",
+  },
+]
+
 export const education = [
-  { id: 1, level: "Elementary", school: "", period: "S.Y. 2012 – 2016", honor: "With Honors (Grade 3–6)", icon: "🏫" },
-  { id: 2, level: "Junior High School", school: "", period: "S.Y. 2016 – 2020", honor: "With Honors (Grade 7–10)", icon: "📚" },
-  { id: 3, level: "Senior High School", school: "", period: "S.Y. 2020 – 2022", honor: "With Honors (Grade 11–12)", icon: "🎓" },
-  { id: 4, level: "La Consolacion University Philippines", school: "Bachelor of Science in Information Technology", period: "Graduated June 11, 2026", honor: "Dean's Lister – 1st, 2nd, 3rd Year", icon: "🏛️" },
+  { id: 1, level: "Elementary", school: "Isidore de Seville Integrated School", period: "S.Y. 2012 – 2016", honor: "With Honors (Grade 3–6)", icon: "school" },
+  { id: 2, level: "Junior High School", school: "Stella Maris Academy of Malolos", period: "S.Y. 2016 – 2020", honor: "With Honors (Grade 7–10)", icon: "bookopen" },
+  { id: 3, level: "Senior High School", school: "Bulacan Ecumenical School", period: "S.Y. 2020 – 2022", honor: "With Honors (Grade 11–12)", icon: "graduationcap" },
+  { id: 4, level: "La Consolacion University Philippines", school: "Bachelor of Science in Information Technology", period: "Graduated June 11, 2026", honor: "Magna Cum Laude | Dean's Lister – 1st, 2nd, 3rd & 4th Year", icon: "landmark" },
 ]
 
 export const achievements = [
-  "Microsoft Excel 2019 Associate Certification",
-  "Dean's Lister Awards – 1st, 2nd, 3rd Year",
+  "Job Placement Award and Service Award",
+  "Academic Excellence Awardee",
+  "Microsoft Excel 2019 Associate Certification - May 2023",
+  "Cisco Introduction to Cybersecurity, Cisco Networking Academy – December 2025",
 ]
 
 export const skills = {
-  "Programming": ["JavaScript", "PHP", "Python", "Java"],
-  "Web Development": ["React", "HTML", "CSS", "MySQL", "WordPress", "Laravel"],
-  "Backend & API": ["Laravel", "Postman", "REST APIs", "CRUD Operations"],
+  "Languages & Frameworks": ["React", "JSX", "JavaScript", "Vue.js", "Laravel", "Tailwind CSS", "HTML", "CSS"],
+  "Tools & Platforms": ["GitHub", "Postman", "Laravel Reverb", "Zuora", "Git", "VS Code", "Node.js", "HeidiSQL"],
+  "Concepts": ["API Integration", "WebSockets", "Component Architecture", "Responsive Design", "Full-Stack Development"],
   "Database": ["MySQL", "Database Design"],
   "Networking & Security": ["Cisco Packet Tracer", "Routing", "VLANs", "VPN"],
-  "Tools": ["Git", "GitHub", "VS Code", "Node.js", "NetBeans", "HeidiSQL"],
   "Game Development": ["Godot Engine"],
-  "Soft Skills": ["Team Collaboration", "Problem-Solving", "Time Management", "Communication", "Adaptability"],
+  "Other": ["Python", "Java", "PHP", "OpenCV", "Kotlin", "Blender 3D"],
+  "Soft Skills": ["Problem Solving", "Critical Thinking", "Team Collaboration", "Communication", "Adaptability", "Time Management"],
 }
 
 export const projects = [
@@ -57,7 +72,7 @@ export const projects = [
     category: "Web Development",
     image: portfolioImg,
     description: "A personal portfolio website built with React and Vite showcasing projects, skills, and contact information.",
-    github: "https://github.com/roxannroxas",
+    github: "",
     demo: "",
   },
   {
@@ -145,7 +160,7 @@ export const projects = [
     title: "Blender 3D Project",
     tech: ["Blender 3D", "Animation", "Image Texturing"],
     category: "3D / Design",
-    image: dabreederImg,
+    image: blender3dImg,
     description: "3D modeling and animation project created in Blender with image texturing and scene composition.",
     github: "",
     demo: "",

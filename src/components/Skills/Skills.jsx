@@ -9,14 +9,14 @@ import {
 import './Skills.css'
 
 const categoryIcons = {
-  'Programming':           <FaCode />,
-  'Web Development':       <FaGlobe />,
-  'Backend & API':         <FaBolt />,
-  'Database':              <FaDatabase />,
-  'Networking & Security': <FaShieldAlt />,
-  'Game Development':      <FaGamepad />,
-  'Tools':                 <FaTools />,
-  'Soft Skills':           <FaHandshake />,
+  'Languages & Frameworks': <FaCode />,
+  'Tools & Platforms':      <FaTools />,
+  'Concepts':               <FaLightbulb />,
+  'Database':               <FaDatabase />,
+  'Networking & Security':  <FaShieldAlt />,
+  'Game Development':       <FaGamepad />,
+  'Other':                  <FaGlobe />,
+  'Soft Skills':            <FaHandshake />,
 }
 
 const techDetails = [
@@ -24,16 +24,16 @@ const techDetails = [
     icon: <FaPuzzlePiece />,
     category: 'Languages & Frameworks',
     items: [
-      'React', 'JSX', 'JavaScript', 'PHP',
-      'Laravel', 'Tailwind CSS', 'HTML', 'CSS', 'Vue.js',
+      'React', 'JSX', 'JavaScript', 'Vue.js',
+      'Laravel', 'Tailwind CSS', 'HTML', 'CSS',
     ],
   },
   {
     icon: <FaWrench />,
     category: 'Tools & Platforms',
     items: [
-      'GitHub', 'Postman', 'HeidiSQL',
-      'Laravel Reverb', 'N8N', 'Zuora', 'Git', 'VS Code',
+      'GitHub', 'Postman', 'Laravel Reverb',
+      'Zuora', 'Git', 'VS Code', 'HeidiSQL',
     ],
   },
   {
@@ -50,6 +50,19 @@ const techDetails = [
 
 const workExperience = [
   {
+    role: 'Junior Software Engineer',
+    company: 'ViewQwest Philippines, Inc.',
+    period: '2026 – Present',
+    type: 'Full-time',
+    bullets: [
+      'Owns frontend development in React/JSX and Vue.js across cybersecurity, support, and broadband platforms.',
+      'Handles complex Laravel API integrations and data flows independently.',
+      'Leads Zuora subscription and billing integrations — beyond internship scope.',
+      'Extends Laravel Reverb WebSocket features for live notifications and progress tracking.',
+      'Manages branch workflows and code reviews on Git/GitHub.',
+    ],
+  },
+  {
     role: 'Web Development Intern',
     company: 'ViewQwest Philippines, Inc.',
     supervisor: 'Mr. John Salonga — Information Systems Manager',
@@ -57,15 +70,15 @@ const workExperience = [
     hours: '500 Hours',
     location: 'LDN Building, McArthur Highway, Malolos, Bulacan',
     bullets: [
-      'Built and refined React/JSX frontend components for multiple internal platforms, including cybersecurity service pages, support and FAQ sections, and residential broadband interfaces.',
-      'Integrated frontend components with Laravel backend APIs to ensure accurate data flow across internal dashboards and system modules.',
-      'Performed a full framework migration from Laravel 9 to Laravel 12, executing system upgrades and database migrations that improved overall application performance.',
-      'Implemented real-time event handling using Laravel Reverb WebSockets, enabling live progress bars and dynamic notifications across the system.',
-      'Built a CSV import system with multi-layer validation, transaction handling, and logging to ensure accurate and reliable data processing.',
-      'Designed and implemented calendar-based filters integrated with backend APIs for dynamic day, week, month, and year data retrieval.',
-      'Used Postman to test and validate API endpoints, diagnosing integration gaps between backend responses and frontend rendering.',
-      'Converted traditional CSS styling to Tailwind CSS, improving design consistency and simplifying the overall styling workflow.',
-      'Managed source code changes and collaboration using Git and GitHub throughout the entire training period.',
+      'Built React/JSX components for cybersecurity, support, and broadband internal platforms.',
+      'Integrated frontend with Laravel backend APIs across dashboards and system modules.',
+      'Migrated full framework from Laravel 9 to Laravel 12, improving application performance.',
+      'Implemented real-time WebSocket event handling using Laravel Reverb.',
+      'Built a CSV import system with multi-layer validation, transaction handling, and logging.',
+      'Designed calendar-based filters with backend API integration for dynamic data retrieval.',
+      'Tested and validated API endpoints using Postman.',
+      'Converted CSS to Tailwind CSS for improved design consistency.',
+      'Managed source code and collaboration using Git and GitHub.',
     ],
   },
 ]
@@ -82,8 +95,7 @@ export default function Skills() {
           <h1 className="section-title sk-hero-title">My Skills</h1>
           <p className="sk-sub">
             Technologies and tools I've worked with across academic projects,
-            personal development, and 500 hours of hands-on professional experience
-            at ViewQwest Philippines, Inc.
+            personal development, and professional experience at ViewQwest Philippines, Inc.
           </p>
         </div>
       </section>
@@ -150,24 +162,36 @@ export default function Skills() {
                   <div>
                     <h3 className="sk-exp-role">{job.role}</h3>
                     <p className="sk-exp-company">{job.company}</p>
-                    <p className="sk-exp-supervisor">
-                      <FaUserTie className="sk-meta-icon" />
-                      {job.supervisor}
-                    </p>
+                    {job.supervisor && (
+                      <p className="sk-exp-supervisor">
+                        <FaUserTie className="sk-meta-icon" />
+                        {job.supervisor}
+                      </p>
+                    )}
                   </div>
                   <div className="sk-exp-meta">
                     <span className="sk-exp-badge">
                       <FaCalendarAlt className="sk-meta-icon" />
                       {job.period}
                     </span>
-                    <span className="sk-exp-badge">
-                      <FaBolt className="sk-meta-icon" />
-                      {job.hours}
-                    </span>
-                    <span className="sk-exp-badge">
-                      <FaMapMarkerAlt className="sk-meta-icon" />
-                      {job.location}
-                    </span>
+                    {job.hours && (
+                      <span className="sk-exp-badge">
+                        <FaBolt className="sk-meta-icon" />
+                        {job.hours}
+                      </span>
+                    )}
+                    {job.type && !job.hours && (
+                      <span className="sk-exp-badge">
+                        <FaBolt className="sk-meta-icon" />
+                        {job.type}
+                      </span>
+                    )}
+                    {job.location && (
+                      <span className="sk-exp-badge">
+                        <FaMapMarkerAlt className="sk-meta-icon" />
+                        {job.location}
+                      </span>
+                    )}
                   </div>
                 </div>
                 <ul className="sk-exp-bullets">

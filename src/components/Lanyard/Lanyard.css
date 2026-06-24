@@ -8,3 +8,21 @@
   width: 100% !important;
   height: 100% !important;
 }
+
+.home-about-lanyard {
+  height: 100vh;
+  position: relative;
+  min-width: unset;
+}
+
+@media (max-width: 900px) {
+  .home-about-lanyard { height: 60vh; min-height: 400px; }
+}
+
+@media (max-width: 768px) {
+  .home-about-lanyard { height: 55vh; min-height: 380px; }
+}
+
+@media (max-width: 480px) {
+  .home-about-lanyard { height: 50vh; min-height: 350px; }
+}

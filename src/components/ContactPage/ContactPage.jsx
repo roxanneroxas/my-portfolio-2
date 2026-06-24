@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
 import { profile } from '../../data/staticData'
 import './ContactPage.css'
+import { Mail, Phone, MapPin, ExternalLink, GitFork } from 'lucide-react'
 
 const INFO = [
-  { icon: '✉️', label: 'Email', value: profile.email, href: `mailto:${profile.email}` },
-  { icon: '📱', label: 'Phone', value: profile.phone, href: `tel:${profile.phone}` },
-  { icon: '📍', label: 'Location', value: profile.address, href: null },
+  { icon: <Mail size={20} strokeWidth={1.8} />,        label: 'Email',    value: profile.email,   href: `mailto:${profile.email}` },
+  { icon: <Phone size={20} strokeWidth={1.8} />,       label: 'Phone',    value: profile.phone,   href: `tel:${profile.phone}` },
+  { icon: <MapPin size={20} strokeWidth={1.8} />,      label: 'Location', value: profile.address, href: null },
 ]
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [focused, setFocused] = useState(null)
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -26,12 +28,17 @@ export default function ContactPage() {
 
   return (
     <main className="contact-page">
+      <div className="cp-bg-orb cp-orb-1" />
+      <div className="cp-bg-orb cp-orb-2" />
+
       <section className="cp-section">
         <div className="container cp-inner">
+
+          {/* LEFT */}
           <div className="cp-left">
             <p className="section-label">Let's Talk</p>
-            <h1 className="section-title">Get in Touch</h1>
-            <p className="cp-intro">I'd love to hear from you! Whether you have a project idea, a question, or just want to say hi, feel free to drop a message.</p>
+            <h1 className="section-title cp-heading">Get in<br /><span className="cp-heading-accent">Touch</span></h1>
+            <p className="cp-intro">Whether you have a project idea, a question, or just want to say hi — my inbox is always open.</p>
 
             <div className="cp-info-list">
               {INFO.map(item => (
@@ -40,46 +47,87 @@ export default function ContactPage() {
                   <div>
                     <p className="cp-info-label">{item.label}</p>
                     {item.href
-                      ? <a href={item.href} className="cp-info-val">{item.value}</a>
+                      ? <a href={item.href} className="cp-info-val cp-info-link">{item.value}</a>
                       : <p className="cp-info-val">{item.value}</p>}
                   </div>
                 </div>
               ))}
             </div>
-
-            <div className="cp-socials">
-              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="cp-social">🔗 LinkedIn</a>
-              <a href={profile.github} target="_blank" rel="noreferrer" className="cp-social">🐙 GitHub</a>
-            </div>
+          <div className="cp-socials">
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="cp-social">
+              <ExternalLink size={16} strokeWidth={1.8} /> LinkedIn
+            </a>
+            <a href={profile.github} target="_blank" rel="noreferrer" className="cp-social">
+              <GitFork size={16} strokeWidth={1.8} /> GitHub
+            </a>
+          </div>
           </div>
 
+          {/* RIGHT */}
           <div className="cp-right">
-            <div className="card cp-form-card">
-              <h3 className="cp-form-title">Send a Message</h3>
+            <div className="cp-form-card">
+              <div className="cp-form-header">
+                <h3 className="cp-form-title">Send a Message</h3>
+                <p className="cp-form-sub">I'll get back to you as soon as possible.</p>
+              </div>
+
               <form onSubmit={handleSubmit} className="cp-form">
                 <div className="cp-row">
-                  <div className="cp-field">
+                  <div className={`cp-field ${focused === 'name' ? 'focused' : ''} ${form.name ? 'filled' : ''}`}>
                     <label>Your Name</label>
-                    <input type="text" name="name" placeholder="Your Name" value={form.name} onChange={handleChange} required />
+                    <input
+                      type="text" name="name" placeholder="First Name Last Name"
+                      value={form.name} onChange={handleChange}
+                      onFocus={() => setFocused('name')} onBlur={() => setFocused(null)}
+                      required
+                    />
                   </div>
-                  <div className="cp-field">
+                  <div className={`cp-field ${focused === 'email' ? 'focused' : ''} ${form.email ? 'filled' : ''}`}>
                     <label>Your Email</label>
-                    <input type="email" name="email" placeholder="Your Email" value={form.email} onChange={handleChange} required />
+                    <input
+                      type="email" name="email" placeholder="hello@example.com"
+                      value={form.email} onChange={handleChange}
+                      onFocus={() => setFocused('email')} onBlur={() => setFocused(null)}
+                      required
+                    />
                   </div>
                 </div>
-                <div className="cp-field">
+
+                <div className={`cp-field ${focused === 'subject' ? 'focused' : ''} ${form.subject ? 'filled' : ''}`}>
                   <label>Subject</label>
-                  <input type="text" name="subject" placeholder="Subject" value={form.subject} onChange={handleChange} />
+                  <input
+                    type="text" name="subject" placeholder="What's this about?"
+                    value={form.subject} onChange={handleChange}
+                    onFocus={() => setFocused('subject')} onBlur={() => setFocused(null)}
+                  />
                 </div>
-                <div className="cp-field">
+
+                <div className={`cp-field ${focused === 'message' ? 'focused' : ''} ${form.message ? 'filled' : ''}`}>
                   <label>Your Message</label>
-                  <textarea name="message" placeholder="Your Message..." rows={5} value={form.message} onChange={handleChange} required />
+                  <textarea
+                    name="message" placeholder="Tell me about your project or idea..."
+                    rows={5} value={form.message} onChange={handleChange}
+                    onFocus={() => setFocused('message')} onBlur={() => setFocused(null)}
+                    required
+                  />
                 </div>
-                <button type="submit" className="btn btn-primary cp-submit">Send Message ✈️</button>
-                {sent && <p className="cp-success">✅ Opening your mail client…</p>}
+
+                <button type="submit" className="cp-submit">
+                  <span>Send Message</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
+                  </svg>
+                </button>
+
+                {sent && (
+                  <div className="cp-success">
+                    <span>✅</span> Opening your mail client…
+                  </div>
+                )}
               </form>
             </div>
           </div>
+
         </div>
       </section>
     </main>

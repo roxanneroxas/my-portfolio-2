@@ -9,9 +9,9 @@ import './Lanyard.css';
 extend({ MeshLineGeometry, MeshLineMaterial });
 
 export default function Lanyard({
-  position = [0, 0, 30],
+  position = [0, 0, 8],  // was [0, 0, 30] — much closer
   gravity = [0, -40, 0],
-  fov = 20,
+  fov = 40,              // was 20 — wider view
   transparent = true,
   cardTexture = null,
 }) {
@@ -147,11 +147,11 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, cardTexture = nul
         <meshLineMaterial
           color="white"
           depthTest={false}
-          resolution={isMobile ? [1000, 2000] : [1000, 1000]}
+          resolution={isMobile ? [500, 1000] : [1000, 1000]}
           useMap
           map={texture}
           repeat={[-4, 1]}
-          lineWidth={1}
+          lineWidth={isMobile ? 0.5 : 1}
         />
       </mesh>
     </>
