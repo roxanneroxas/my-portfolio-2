@@ -161,7 +161,6 @@
   align-items: center;
   padding-top: 1.4rem;
 }
-
 .edu-dot-icon {
   width: 52px;
   height: 52px;
@@ -203,6 +202,8 @@
   text-align: left;
   align-items: flex-start;
   justify-content: flex-start;
+  align-self: start;     /* add this */
+  height: fit-content;   /* add this */
 }
 
 .edu-body:hover {
