@@ -2,6 +2,12 @@ import React, { useState } from 'react'
 import { profile } from '../../data/staticData'
 import './ContactPage.css'
 import { Mail, Phone, MapPin, ExternalLink, GitFork } from 'lucide-react'
+import emailjs from '@emailjs/browser'
+emailjs.init('ILJx2OdUM_cafwinA')
+
+const SERVICE_ID  = 'service_a68fwe3'
+const TEMPLATE_CONTACT  = 'template_kpic359'
+const TEMPLATE_AUTOREPLY = 'template_ua33mw6'
 
 const INFO = [
   { icon: <Mail size={20} strokeWidth={1.8} />,        label: 'Email',    value: profile.email,   href: `mailto:${profile.email}` },
@@ -11,20 +17,44 @@ const INFO = [
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState(null) // 'sending' | 'success' | 'error'
   const [focused, setFocused] = useState(null)
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    const sub = encodeURIComponent(form.subject || `Message from ${form.name}`)
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)
-    window.location.href = `mailto:${profile.email}?subject=${sub}&body=${body}`
-    setSent(true)
-    setForm({ name: '', email: '', subject: '', message: '' })
-    setTimeout(() => setSent(false), 5000)
+ const handleSubmit = async e => {
+  e.preventDefault()
+  setStatus('sending')
+
+  const templateParams = {
+    name:    form.name,
+    email:   form.email,
+    title:   form.subject,
+    message: form.message,
   }
+
+  try {
+    const res1 = await emailjs.send(SERVICE_ID, TEMPLATE_CONTACT, templateParams)
+    console.log('Contact email result:', res1)
+
+    const res2 = await emailjs.send(SERVICE_ID, TEMPLATE_AUTOREPLY, {
+      name:  form.name,
+      email: form.email,
+    })
+    console.log('Autoreply result:', res2)
+
+    setStatus('success')
+    setForm({ name: '', email: '', subject: '', message: '' })
+    setTimeout(() => setStatus(null), 5000)
+
+  } catch (err) {
+    console.error('EmailJS error status:', err.status)
+    console.error('EmailJS error text:', err.text)
+    console.error('Full error:', err)
+    setStatus('error')
+    setTimeout(() => setStatus(null), 5000)
+  }
+}
 
   return (
     <main className="contact-page">
@@ -53,14 +83,15 @@ export default function ContactPage() {
                 </div>
               ))}
             </div>
-          <div className="cp-socials">
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" className="cp-social">
-              <ExternalLink size={16} strokeWidth={1.8} /> LinkedIn
-            </a>
-            <a href={profile.github} target="_blank" rel="noreferrer" className="cp-social">
-              <GitFork size={16} strokeWidth={1.8} /> GitHub
-            </a>
-          </div>
+
+            <div className="cp-socials">
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" className="cp-social">
+                <ExternalLink size={16} strokeWidth={1.8} /> LinkedIn
+              </a>
+              <a href={profile.github} target="_blank" rel="noreferrer" className="cp-social">
+                <GitFork size={16} strokeWidth={1.8} /> GitHub
+              </a>
+            </div>
           </div>
 
           {/* RIGHT */}
@@ -112,16 +143,31 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <button type="submit" className="cp-submit">
-                  <span>Send Message</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
-                  </svg>
+                <button
+                  type="submit"
+                  className="cp-submit"
+                  disabled={status === 'sending'}
+                >
+                  {status === 'sending' ? (
+                    <span>Sending…</span>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13" /><polygon points="22 2 15 22 11 13 2 9 22 2" />
+                      </svg>
+                    </>
+                  )}
                 </button>
 
-                {sent && (
+                {status === 'success' && (
                   <div className="cp-success">
-                    <span>✅</span> Opening your mail client…
+                    ✅ Message sent! I'll get back to you soon.
+                  </div>
+                )}
+                {status === 'error' && (
+                  <div className="cp-error">
+                    ❌ Something went wrong. Please try again.
                   </div>
                 )}
               </form>
