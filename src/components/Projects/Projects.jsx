@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber'
 import { OrbitControls, useGLTF, Environment, ContactShadows } from '@react-three/drei'
 import { projects } from '../../data/staticData'
 import houseModel from '../../assets/house.glb'
+import ModelReactions from '../ModelReactions/ModelReactions'
 import './Projects.css'
 
 const ALL = 'All'
@@ -65,6 +66,7 @@ export default function Projects() {
                 </Canvas>
               </Suspense>
               <p className="model-label">House — Blender 3D</p>
+               <ModelReactions storageKey="house-model-reactions" />
             </div>
           </div>
 

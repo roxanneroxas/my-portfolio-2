@@ -241,13 +241,13 @@ function AboutSection() {
           </Link>
         </div>
         <div className="home-about-lanyard">
-          <Lanyard
-            position={isMobile ? [0, 0, 20] : [0, 0, 8]}
-            gravity={[0, -20, 0]}
-            fov={isMobile ? 35 : 40}
-            transparent={true}
-            cardTexture={cardTex}
-          />
+<Lanyard
+  position={isMobile ? [0, 0, 4] : [0, 0, 8]}
+  gravity={[0, -20, 0]}
+  fov={isMobile ? 60 : 40}
+  transparent={true}
+  cardTexture={cardTex}
+/>
         </div>
       </div>
     </section>

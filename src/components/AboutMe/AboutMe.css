@@ -351,7 +351,13 @@
   .am-c-info { align-items: center; }
   .am-stack-frame { width: 280px; height: 370px; }
   .edu-body-top { flex-direction: column; align-items: flex-start; }
-  .edu-right { align-items: flex-start; }
+    .edu-right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 0.6rem;
+    gap: 0.5rem;
+  }
 }
 
 @media (max-width: 500px) {

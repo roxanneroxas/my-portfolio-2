@@ -343,9 +343,14 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
   .sk-exp-header  { flex-direction: column; }
-  .sk-exp-meta    { align-items: flex-start; }
+  .sk-exp-meta    { align-items: flex-start; max-width: 100%; }
   .sk-grid        { grid-template-columns: 1fr; }
   .sk-detail-grid { grid-template-columns: 1fr; }
+  .sk-exp-badge   {
+    white-space: normal;
+    max-width: 100%;
+    word-break: break-word;
+  }
 }
   .sk-exp-bullets li {
     font-size: 0.88rem;
